@@ -30,7 +30,7 @@ const SearchManufacturer = ({
         });
   return (
     <div className="search-manufacturer">
-      <Combobox>
+      <Combobox value={manufacturer} onChange={setManufacturer}>
         <div className="relative w-full">
           <ComboboxButton className="absolute top-[14px]">
             <Image
@@ -59,9 +59,9 @@ const SearchManufacturer = ({
                 <ComboboxOption
                   key={item}
                   value={item}
-                  className={({ active }) =>
+                  className={({ focus }) =>
                     `relative search-manufacturer__option ${
-                      active ? "bg-primary-blue text-white" : "text-gray-900"
+                      focus ? "bg-primary-blue text-white" : "text-gray-900"
                     }`
                   }
                 >
