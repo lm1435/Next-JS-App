@@ -1,6 +1,6 @@
 "use client";
 
-import { SearchManufacturerProps } from "@/types";
+import { SearchManufacturerProps } from "@/types/SearchManufacturerProps";
 import {
   Combobox,
   Transition,
