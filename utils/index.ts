@@ -1,10 +1,10 @@
-export async function fetchCars() {
+export async function fetchCars(make: string = "toyota") {
   const headers = {
     "x-rapidapi-key": "8a37665207msh718519d04bf6032p15563ajsn7114fe8d2829",
     "x-rapidapi-host": "cars-by-api-ninjas.p.rapidapi.com",
   };
   const response = await fetch(
-    "https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=4runner",
+    `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${make}`,
     {
       headers,
     }
