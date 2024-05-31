@@ -23,7 +23,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
         leaveTo="opacity-0"
         appear
       >
-        <Dialog onClose={closeModal} className="relative z-50" as="div">
+        <Dialog onClose={closeModal} className="relative z-50 " as="div">
           <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
             <TransitionChild
               enter="ease-out duration-3000"
@@ -33,7 +33,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="w-full max-w-md rounded-xl p-6 bg-gray-800">
+              <DialogPanel className="w-full max-w-md rounded-xl shadow-xl p-6 bg-gray-700">
                 <button type="button" onClick={closeModal}>
                   <Image
                     src="/close.svg"
@@ -43,21 +43,62 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                     className="object-contain absolute top-2 right-2 z-10 w-fit bg-white p-1 rounded-full"
                   />
                 </button>
+                <div className="flex-1 flex flex-col gap-3">
+                  <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
+                    <Image
+                      src="/hero.png"
+                      alt="logo"
+                      fill
+                      priority
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="flex gap-3">
+                    <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
+                      <Image
+                        src="/hero.png"
+                        alt="logo"
+                        fill
+                        priority
+                        className="object-contain"
+                      />
+                    </div>
+                    <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
+                      <Image
+                        src="/hero.png"
+                        alt="logo"
+                        fill
+                        priority
+                        className="object-contain"
+                      />
+                    </div>
+                    <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
+                      <Image
+                        src="/hero.png"
+                        alt="logo"
+                        fill
+                        priority
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
                 <DialogTitle
-                  as="h3"
-                  className="text-base/7 font-medium text-white"
+                  as="h2"
+                  className="text-base/7 font-medium text-white mt-2 capitalize"
                 >
-                  <span className="capitalize">
-                    {car.year} {car.make} {car.model}
-                  </span>
+                  {car.year} {car.make} {car.model}
                 </DialogTitle>
-                <p className="mt-2 text-sm/6 text-white"></p>
-                <div className="mt-4">
-                  <CustomButton
-                    containerStyles="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
-                    handleClick={closeModal}
-                    title="Close Modal"
-                  />
+                <div className="mt-3 flex flex-wrap gap-4 capitalize">
+                  {Object.entries(car)?.map(([key, value]) => (
+                    <div
+                      className="flex justify-between gap-5 w-full text-right text-white"
+                      key={key}
+                    >
+                      <h4>{key?.split("_")?.join(" ")}</h4>
+                      <p>{value}</p>
+                    </div>
+                  ))}
                 </div>
               </DialogPanel>
             </TransitionChild>
