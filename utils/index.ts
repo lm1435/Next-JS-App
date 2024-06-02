@@ -1,10 +1,13 @@
-export async function fetchCars(make: string = "toyota") {
+import { CarProps } from "@/types/CarCardProps";
+import { FilterProps } from "@/types/FilterProps";
+
+export async function fetchCars({manufacturer, model, fuel, limit, year}: FilterProps) {
   const headers = {
     "x-rapidapi-key": "8a37665207msh718519d04bf6032p15563ajsn7114fe8d2829",
     "x-rapidapi-host": "cars-by-api-ninjas.p.rapidapi.com",
   };
   const response = await fetch(
-    `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${make}&limit=30`,
+    `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&model=${model}&year=${year}&fuel_type=${fuel}&limit=${limit}`,
     {
       headers,
     }
@@ -29,3 +32,18 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 
   return rentalRatePerDay.toFixed(0);
 };
+
+export const fetchCarImage = ({ make, model, year }: CarProps, angle?: string) => {
+  const url = new URL("https://cdn.imagin.studio/getimage");
+
+  //none working api key since i cant get a free demo api key anymore. returns covered ferrari.
+  url.searchParams.append('customer', 'hrjavascript-mastery' || '');
+  url.searchParams.append('make', make);
+  url.searchParams.append('modelFamily', model.split(" ")[0]);
+  url.searchParams.append('zoomType', 'fullscreen');
+  url.searchParams.append('modelYear', `${year}`);
+  if (angle) {
+    url.searchParams.append('angle', `${angle}`);
+  }
+  return `${url}`;
+}

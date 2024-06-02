@@ -1,14 +1,13 @@
 import { CarDetailsProps } from "@/types/CarDetailsProps";
 import Image from "next/image";
 import {
-  Description,
   Dialog,
   DialogPanel,
   DialogTitle,
   TransitionChild,
   Transition,
 } from "@headlessui/react";
-import { CustomButton } from ".";
+import { fetchCarImage } from "@/utils";
 
 const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
   return (
@@ -33,7 +32,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="w-full max-w-md rounded-xl shadow-xl p-6 bg-gray-700">
+              <DialogPanel className="w-full max-w-md max-h-[85%] overflow-scroll rounded-xl shadow-xl p-6 bg-gray-700">
                 <button type="button" onClick={closeModal}>
                   <Image
                     src="/close.svg"
@@ -44,9 +43,9 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                   />
                 </button>
                 <div className="flex-1 flex flex-col gap-3">
-                  <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
+                  <div className="relative w-full h-40 bg-gradient-to-r from-purple-500 to-pink-500 bg-cover bg-center rounded-lg">
                     <Image
-                      src="/hero.png"
+                      src={fetchCarImage(car)}
                       alt="logo"
                       fill
                       priority
@@ -56,7 +55,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                   <div className="flex gap-3">
                     <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
                       <Image
-                        src="/hero.png"
+                        src={fetchCarImage(car, '29')}
                         alt="logo"
                         fill
                         priority
@@ -65,7 +64,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                     </div>
                     <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
                       <Image
-                        src="/hero.png"
+                        src={fetchCarImage(car, '33')}
                         alt="logo"
                         fill
                         priority
@@ -74,7 +73,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                     </div>
                     <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
                       <Image
-                        src="/hero.png"
+                        src={fetchCarImage(car, '13')}
                         alt="logo"
                         fill
                         priority

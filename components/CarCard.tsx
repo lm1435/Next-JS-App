@@ -1,6 +1,6 @@
 "use client";
 import { CarCardProps } from "@/types/CarCardProps";
-import { calculateCarRent } from "@/utils";
+import { calculateCarRent, fetchCarImage } from "@/utils";
 import Image from "next/image";
 import { CarDetails, CustomButton } from ".";
 import { useState } from "react";
@@ -9,12 +9,7 @@ const CarCard = ({ car }: CarCardProps) => {
   const {
     city_mpg,
     year,
-    combination_mpg,
-    cylinders,
-    displacement,
     drive,
-    fuel_type,
-    highway_mpg,
     make,
     model,
     transmission,
@@ -38,7 +33,7 @@ const CarCard = ({ car }: CarCardProps) => {
 
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
-          src="/hero.png"
+          src={fetchCarImage(car)}
           alt="logo"
           fill
           priority
